@@ -1,0 +1,48 @@
+name:                aoc2016
+version:             0.1.0.0
+synopsis:            Simple project template from stack
+description:         Please see README.md
+homepage:            https://github.com/kandersen/aoc2016#README
+license:             BSD3
+license-file:        LICENSE
+author:              Kristoffer Just Andersen
+maintainer:          kja@cs.au.dk
+copyright:           2016 Kristoffer Just Andersen
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable aoc2016
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  other-modules:       Advent,
+                       One,
+                       Two,
+                       Three,
+                       Four,
+                       Five,
+                       Six,
+                       Seven,
+                       Eight,
+                       Nine,
+                       Ten,
+                       Twelve,
+                       Thirteen
+                  
+  build-depends:       array >= 0.5.1.1,
+                       base >= 4.7 && < 5,
+                       binary >= 0.8.3.0,
+                       bytestring >= 0.10.8.1,
+                       containers >= 0.5.7.1,
+                       either,
+                       free >= 4.12.4,
+                       lens,
+                       megaparsec,
+                       mtl >= 2.2.1,
+                       pureMD5,
+                       stm >= 2.4.4.1,
+                       transformers >= 0.5.2.0,
+                       logict
+                                                                                           

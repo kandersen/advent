@@ -1,0 +1,52 @@
+module Main where
+import System.Environment
+import qualified One
+import qualified Two
+import qualified Three
+import qualified Four
+import qualified Five
+import qualified Six
+import qualified Seven
+import qualified Eight
+import qualified Nine
+import qualified Ten
+import qualified Eleven
+import qualified Twelve
+import qualified Thirteen
+import qualified Fifteen
+import qualified Fourteen
+import qualified Sixteen
+import qualified Seventeen
+import qualified Eighteen
+import qualified Nineteen
+import qualified Twenty
+import qualified Twentyone
+import qualified Twentythree
+
+main :: IO ()
+main = do
+  [n] <- getArgs
+  case n of
+    "1" -> One.main
+    "2" -> Two.main
+    "3" -> Three.main
+    "4" -> Four.main
+    "5" -> Five.main
+    "6" -> Six.main
+    "7" -> Seven.main
+    "8" -> Eight.main
+    "9" -> Nine.main
+    "10" -> Ten.main
+    "11" -> Eleven.main
+    "12" -> Twelve.main
+    "13" -> Thirteen.main
+    "14" -> Fourteen.main
+    "15" -> Fifteen.main
+    "16" -> Sixteen.main
+    "18" -> Eighteen.main
+    "17" -> Seventeen.main
+    "19" -> Nineteen.main
+    "20" -> Twenty.main
+    "21" -> Twentyone.main
+    "23" -> Twentythree.main
+    _ -> putStrLn $ "No solution for day " ++ n

@@ -1,0 +1,26 @@
+ 1: cpy a b 
+ 2: dec b
+ 3: cpy a d
+ 4: cpy 0 a
+ 5: cpy b c
+ 6: inc a
+ 7: dec c
+ 9: jnz c -2
+10: dec d
+11: jnz d -5
+12: dec b
+13: cpy b c
+14: cpy c d
+15: dec d
+16: inc c
+17: jnz d -2
+18: tgl c
+19: cpy -16 c
+20: jnz 1 c
+21: cpy 94 c
+22: jnz 82 d
+23: inc a
+24: inc d
+25: jnz d -2
+26: inc c
+27: jnz c -5
