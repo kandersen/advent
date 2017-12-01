@@ -1,8 +1,19 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE LambdaCase #-}
-module Advent(
-  module Advent,
-  Parser
+module Advent.Library (
+  defaultMain,
+
+  Parser,
+  pLines,
+  brackets,
+  parens,
+  natural,
+  integer,
+
+  md5hash,
+
+  push,
+  pop
   ) where
 
 import Text.Megaparsec hiding (State)
@@ -28,10 +39,8 @@ integer :: (Read a, Num a) => Parser a
 integer = (char '-' *> (negate <$> integer))
       <|> natural
 
-parseLines :: Parser a -> String -> [a]
-parseLines p s = case runParser (manyTill (p <* eol) eof) "Advent: parseLines" s of
-  Left e -> error $ parseErrorPretty e
-  Right as -> as
+pLines :: Parser a -> Parser [a]
+pLines p = many (p <* eol)
 
 md5hash :: String -> String
 md5hash = show . md5 . BS.pack
@@ -46,3 +55,26 @@ pop = do
 
 push :: (MonadState (Seq a) m) => a -> m ()
 push a = modify ((|> a))
+
+defaultMain :: String -> Parser a -> (a -> IO ()) -> IO ()
+defaultMain description parser body = do
+  input <- getContents
+  case runParser (parser <* eof) description input of
+    Left e -> putStrLn $ parseErrorPretty e
+    Right a -> body a
+
+
+{-
+
+splitOn :: Eq a => a -> [a] -> [[a]]
+splitOn c input = case break (==c) input of
+  (xs, []) -> [xs]
+  (xs, _:ys) -> xs : splitOn c ys
+
+isSubsequenceOf :: (Eq a) => [a] -> [a] -> Bool
+isSubsequenceOf []        _ = True
+isSubsequenceOf  _       [] = False
+isSubsequenceOf xs ys@(_:ys') =
+  xs `isPrefixOf` ys || xs `isSubsequenceOf` ys'
+
+-}

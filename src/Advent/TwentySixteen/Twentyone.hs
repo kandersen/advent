@@ -1,13 +1,14 @@
 {-# LANGUAGE LambdaCase #-}
-module Twentyone(main) where
+module Advent.TwentySixteen.Twentyone (main) where
 
-import Advent
+import Advent.Library
 import Text.Megaparsec hiding (State)
 
 import Control.Monad.State
-import Control.Lens
-import Data.Array.IArray
 import Control.Monad.Trans.Either
+import Control.Monad.Identity
+import Lens.Micro.Platform
+import Data.Array.IArray
 
 
 --------------------------------------------------------------------------------
@@ -74,17 +75,19 @@ runProgram = elems . flip execState (listArray ixs initString) . mapM_ exec
           | True -> x
     exec (Rotate n) = do
       modify $ ixmap ixs $ \i -> (i + n) `mod` length initString      
-    -- exec (RotateBasedOn c) = do
-    --   n <- either id (const $ error "shouldn't happen") . runEitherT $ forM_ ixs $ \i -> do
-    --     val <- (!i) <$> lift get
-    --     if val == c
-    --       then left i
-    --       else return ()
-    --   modify $ ixmap ixs $ \i -> (i + n) `mod` length initString
-    exec (Reverse from to) = return ()
-    exec (Move from to) = return ()
+    exec (RotateBasedOn c) = do
+      n <- _ $ do
+--either id (const $ error "shouldn't happen") . runEitherT
+        forM_ ixs $ \i -> do
+          val <- lift $ ((! i) <$> get)
+          if val == c
+            then left i
+            else return ()
+      modify $ ixmap ixs $ \i -> (i + n) `mod` length initString
+    exec (Reverse _ _) = return ()
+    exec (Move _ _) = return ()
 
 main :: IO ()
-main = do
-  prog <- parseLines parseCommand <$> getContents
+main = defaultMain "2016-21" (pLines parseCommand) $ \prog -> do
   print prog
+  print $ runProgram prog
