@@ -3,7 +3,6 @@
 module Advent.Library (
   defaultMain,
 
-  Parser,
   pLines,
   brackets,
   parens,
@@ -13,7 +12,12 @@ module Advent.Library (
   md5hash,
 
   push,
-  pop
+  pop,
+
+  evolve,
+
+  module Text.Megaparsec,
+  module Text.Megaparsec.String
   ) where
 
 import Text.Megaparsec hiding (State)
@@ -63,6 +67,9 @@ defaultMain description parser body = do
     Left e -> putStrLn $ parseErrorPretty e
     Right a -> body a
 
+evolve :: [a -> a] -> a -> [a]
+evolve [] a = [a]
+evolve (f:fs) a = a : evolve fs (f a)
 
 {-
 

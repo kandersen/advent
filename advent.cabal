@@ -27,14 +27,50 @@ library
                , either
                , microlens-platform
   exposed-modules: Advent.Library
+                 , Advent.Library.Trie
+                 , Advent.TwentyFifteen
                  , Advent.TwentySeventeen
                  , Advent.TwentySeventeen.One
+                 , Advent.TwentySeventeen.Two
+                 , Advent.TwentySeventeen.Three
+                 , Advent.TwentySeventeen.Four
+                 , Advent.TwentySeventeen.Five              
+                 , Advent.TwentySeventeen.Six
+                 , Advent.TwentySeventeen.Eight
+                 , Advent.TwentySeventeen.Nine
+                 , Advent.TwentySeventeen.Eleven
+                 , Advent.TwentySeventeen.Twelve
+                 , Advent.TwentySeventeen.Fifteen
+                 , Advent.TwentySeventeen.Sixteen
+                 , Advent.TwentySeventeen.Seventeen
+                 , Advent.TwentySeventeen.Eighteen
+                 , Advent.TwentySeventeen.TwentyThree
+
 
 executable advent
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
-  other-modules: Advent.Library              
+  ghc-options: -O2
+  other-modules: Advent.Library
+               , Advent.Library.Trie
+               , Advent.TwentyFifteen
+               , Advent.TwentySeventeen
+               , Advent.TwentySeventeen.One
+               , Advent.TwentySeventeen.Two
+               , Advent.TwentySeventeen.Three
+               , Advent.TwentySeventeen.Four
+               , Advent.TwentySeventeen.Five
+               , Advent.TwentySeventeen.Six
+               , Advent.TwentySeventeen.Eight
+               , Advent.TwentySeventeen.Nine
+               , Advent.TwentySeventeen.Eleven
+               , Advent.TwentySeventeen.Twelve
+               , Advent.TwentySeventeen.Fifteen
+               , Advent.TwentySeventeen.Sixteen
+               , Advent.TwentySeventeen.Seventeen
+               , Advent.TwentySeventeen.Eighteen
+               , Advent.TwentySeventeen.TwentyThree
 
   build-depends:       advent
                      , base

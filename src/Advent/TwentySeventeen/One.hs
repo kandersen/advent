@@ -1,7 +1,7 @@
+{-# LANGUAGE BangPatterns #-}
 module Advent.TwentySeventeen.One where
 
 import Advent.Library
-import Text.Megaparsec
 import Data.Char (digitToInt)
 
 main :: IO ()
@@ -9,6 +9,7 @@ main = defaultMain "2017.1" (many digitChar) $ \s -> do
   putStrLn s
   print . process . map digitToInt $ s
   print . partTwo . map digitToInt $ s
+  print . partTwo' . map digitToInt $ s
 
 process :: [Int] -> Int
 process [] = 0
@@ -27,3 +28,18 @@ partTwo digits = go $ zip digits (secondHalf ++ firstHalf)
 
     (firstHalf, secondHalf) = splitAt midPoint digits
     midPoint = length digits `div` 2
+
+partTwo' :: [Int] -> Int
+partTwo' xs = findEnd xs xs [] []
+  where
+    findEnd _ [] halfway tail = go (halfway) tail 0
+    findEnd (x:xs) (a:b:cs) halfway tail = findEnd xs cs (x:halfway) (b:a:tail)
+    findEnd _ _ _ _ = error "Shouldn't happen"    
+    go (x:xs) (y:ys) !ans = go xs ys (if x == y then ans + x + y else ans)
+    go [] _ !ans = ans
+{-
+partTwo'' :: [Int] -> Int
+partTwo'' xs = findEnd xs xs (\ys zs -> 0)
+  findEnd _ [] k = k [] []
+  findEnd (x:xs) (a:b:cs) k = findEnd xs cs (\)
+-}

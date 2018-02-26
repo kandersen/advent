@@ -1,30 +1,51 @@
-module Seven where
-import           Advent
+module Advent.TwentyFifteen.Seven where
+import           Advent.Library
 import           Control.Monad.Identity
 import           Control.Monad.State
 import Data.Bits (
- (.&.), --and
- (.|.), --or -
- complement,
- shiftL,
- shiftR)
+  (.&.), --and
+  (.|.), --or -
+  complement,
+  shiftL,
+  shiftR)
 import           Data.Map (Map)
 import qualified Data.Map as Map
 import           Data.Word (Word16)
-import           Lens.Micro
-import           Lens.Micro.GHC
-import           Lens.Micro.Mtl
+import           Lens.Micro.Platform
 
 type Val = Either String Word16
 
-data Rule = AND Val Val
+pVal :: Parser Val
+pVal = Right . fromIntegral <$> natural
+   <|> Left <$> many lowerChar
+
+data Expr = AND Val Val
           | OR Val Val
           | NOT Val
           | LSHIFT Val Int
           | RSHIFT Val Int
           | CONST Val
 
-type Rules = Map String Rule
+pBinOp :: (a -> b -> Expr) -> String -> Parser a -> Parser b -> Parser Expr
+pBinOp sem op l r = sem <*> l <* space1 <* string op <* space1 <*> r
+
+pUnOp :: (a -> Expr) -> String -> Parser a -> Parser Expr
+pUnOp sem op arg = sem <* op <* space1 <*> arg
+
+pExpr :: Parser Expr
+pExpr = pBinOp AND "AND" pVal pVal 
+    <|> pBinOp OR "OR" pVal pVal
+    <|> pBinOp LSHIFT "LSHIFT" val natural
+    <|> pBinOp RSHIFT "RSHIFT" val natural
+    <|> pUnOp NOT "NOT" val
+    <|> pUnOp CONST "CONST" val
+
+type Rules = Map String Expr
+
+pRule :: Parser (Rules -> Rules)
+pRule = do
+  e <- pExpr
+          
 
 parseRule :: String -> (Rules -> Rules)
 parseRule s = case words s of
@@ -38,6 +59,11 @@ parseRule s = case words s of
    [] -> Map.insert z (CONST . Left $ x)
    _ -> Map.insert z (CONST . Right $ read x)
  _ -> error $ "malformed input: " ++ s
+
+
+
+pRule :: Parser (Rules -> Rules)
+pRule =  undefined
 
 type Evaluator m a = StateT Rules m a
 
@@ -67,6 +93,6 @@ evalWire wire = do
         CONST (Right x) -> return x
 
 main :: IO ()
-main = defaultMain $ \input -> do
-  let rules = foldl (flip ($)) Map.empty . map parseRule . lines $ input
+main = defaultMain "2015.7" (return [id]) $ \input -> do
+  let rules = foldl (flip ($)) Map.empty $ input
   print $ runIdentity $ evalStateT (evalWire "a") rules
