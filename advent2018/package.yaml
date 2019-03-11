@@ -1,0 +1,21 @@
+name: advent2018
+version: 0.2.0.18
+ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-record-updates -fwarn-monomorphism-restriction -fwarn-unused-do-bind
+dependencies:
+  - base
+  - libadvent
+  - containers
+  - mtl
+  - microlens-platform
+  - array
+  - comonad
+  - vector
+
+      
+executables:
+  advent2018:
+    ghc-options:
+      - -main-is
+      - Advent.TwentyEighteen
+    source-dirs: src
+    main: Advent/TwentyEighteen.hs

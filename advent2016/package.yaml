@@ -1,0 +1,24 @@
+name: advent2016
+version: 0.2.0.18
+ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-record-updates -fwarn-monomorphism-restriction -fwarn-unused-do-bind
+dependencies:
+  - base
+  - libadvent
+  - containers
+  - mtl
+  - microlens
+  - transformers
+  - free
+  - microlens-platform
+  - array
+  - bytestring
+  - megaparsec
+
+      
+executables:
+  advent2016:
+    ghc-options:
+      - -main-is
+      - Advent.TwentySixteen
+    source-dirs: src
+    main: Advent/TwentySixteen.hs

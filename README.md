@@ -1,5 +1,5 @@
-# Advent of Code 2016
+# Advent of Code
 
-Solutions to the AoC 2016 code puzzles.
+Solutions to the AoC code puzzles.
 
 

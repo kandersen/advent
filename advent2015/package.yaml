@@ -1,0 +1,29 @@
+name: advent2015
+version: 0.2.0.18
+ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-record-updates -fwarn-monomorphism-restriction -fwarn-unused-do-bind
+dependencies:
+  - base
+  - libadvent
+  - containers
+  - mtl
+  - microlens
+  - transformers
+  - free
+  - microlens-platform
+  - array
+  - bytestring
+  - megaparsec
+  - aeson
+  - scientific
+  - attoparsec
+  - unordered-containers
+  - heaps
+
+      
+executables:
+  advent2015:
+    ghc-options:
+      - -main-is
+      - Advent.TwentyFifteen
+    source-dirs: src
+    main: Advent/TwentyFifteen.hs

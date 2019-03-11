@@ -1,0 +1,5 @@
+resolver: lts-12.19
+
+packages:
+- .
+- /Users/kja/repos/advent/libadvent

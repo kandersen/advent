@@ -1,0 +1,54 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: c2fd932acda12570d7590093767167a1e4ca549d3d917f93c1ca5b74f6c4cb5b
+
+name:           advent2015
+version:        0.2.0.18
+build-type:     Simple
+cabal-version:  >= 1.10
+
+executable advent2015
+  main-is: Advent/TwentyFifteen.hs
+  other-modules:
+      Advent.TwentyFifteen.Eight
+      Advent.TwentyFifteen.Eleven
+      Advent.TwentyFifteen.Fifteen
+      Advent.TwentyFifteen.Five
+      Advent.TwentyFifteen.Four
+      Advent.TwentyFifteen.Fourteen
+      Advent.TwentyFifteen.Nine
+      Advent.TwentyFifteen.One
+      Advent.TwentyFifteen.Seven
+      Advent.TwentyFifteen.Six
+      Advent.TwentyFifteen.SixB
+      Advent.TwentyFifteen.Ten
+      Advent.TwentyFifteen.Thirteen
+      Advent.TwentyFifteen.Three
+      Advent.TwentyFifteen.Twelve
+      Advent.TwentyFifteen.Twentythree
+      Advent.TwentyFifteen.Twentytwo
+      Advent.TwentyFifteen.Two
+      Paths_advent2015
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-record-updates -fwarn-monomorphism-restriction -fwarn-unused-do-bind -main-is Advent.TwentyFifteen
+  build-depends:
+      aeson
+    , array
+    , attoparsec
+    , base
+    , bytestring
+    , containers
+    , free
+    , heaps
+    , libadvent
+    , megaparsec
+    , microlens
+    , microlens-platform
+    , mtl
+    , scientific
+    , transformers
+    , unordered-containers
+  default-language: Haskell2010
